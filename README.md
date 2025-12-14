@@ -57,7 +57,17 @@ El sistema está diseñado para trabajar con:
 > **Nota**: Aunque el script `demo.py` descarga sub-muestras automáticamente para facilitar la prueba, los usuarios avanzados pueden descargar los datasets completos usando herramientas como `sra-toolkit`:
 > `fastq-dump --split-files SRR10971381`
 
-## ▶️ Uso (Demo)
+## 🖥️ Interfaz Web (Dispositivo Médico)
+Se crea una **vista con Django**, la cual actúa como un Dashboard de Dispositivo Médico en tiempo real.
+*   **Tecnología**: Django 4.0 + HTML5/CSS3 (Diseño Oscuro Profesional).
+*   **Funcionalidad**:
+    *   Carga de muestras (`.fastq`) simuladas o reales.
+    *   Visualización de cada lectura clasificada en tiempo real.
+    *   Gráfico de latencia y nivel de confianza de la IA.
+    *   **Alerta Bio-Peligro**: Notificación visual inmediata si se detecta SARS-CoV-2.
+*   **Acceso**: `http://localhost:8000/`
+
+## ▶️ Uso (Demo CLI)
 Para ejecutar una simulación completa de análisis:
 
 ```bash
