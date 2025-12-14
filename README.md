@@ -4,17 +4,75 @@
 > **Autor**: Antonio  
 > **Objetivo**: Inferencia de patógenos en tiempo real sin conexión a internet.
 
-## 🧬 Descripción del Proyecto
-EdgeGen Dx es una prueba de concepto que simula un dispositivo médico portátil ("Point-of-Care"). Su misión es analizar secuencias genómicas crudas (lecturas de ADN/ARN) directamente en un entorno local (como esta PC), identificando la presencia de virus como SARS-CoV-2 o MERS en milisegundos, sin depender de la nube.
+# EdgeGen Dx - Portable Genomic Analyzer (Experimental)
 
-Este proyecto demuestra la intersección entre **Bioinformática**, **Inteligencia Artificial (Deep Learning)** y **Computación de Alto Rendimiento**.
+> [!WARNING]
+> **Plataforma Experimental de Estudio**: Este software es un prototipo para investigación y educación en bioinformática y Edge AI. **NO** está certificado para uso clínico ni diagnóstico médico real.
 
-## 🚀 Características Principales
-*   **100% Offline**: Privacidad total de los datos médicos.
-*   **IA Comprimida**: Usa modelos CNN optimizados con TensorFlow Lite.
-*   **Flujo Completo**: Desde la ingesta de archivos `.fastq` hasta el reporte clínico.
+**EdgeGen Dx** es una prueba de concepto de un dispositivo de análisis genómico portátil ("Point-of-Care") capaz de detectar patógenos en tiempo real utilizando Inteligencia Artificial acelerada por GPU, sin depender de la nube.
 
-## 📦 Estructura del Proyecto
+## 🧬 Características Principales
+*   **Detección Multi-Patógeno**: Soporte para **SARS-CoV-2 (COVID-19)** e **Influenza A (H3N2)**.
+*   **Inferencia en el Borde (Edge AI)**: Ejecuta modelos CNN cuantizados (TFLite) localmente.
+*   **Aceleración GPU**: Optimizado para GPUs NVIDIA (RTX 4060) mediante TensorFlow/CUDA.
+*   **Interfaz Profesional**: Dashboard Web (Django) con simulación de dispositivo médico.
+## 🧠 Detalles Técnicos del Modelo (AI Engine)
+El "cerebro" de EdgeGen Dx consta de dos redes neuronales convolucionales (CNN) independientes, especializadas por patógeno.
+
+### Arquitectura del Modelo
+*   **Tipo**: 1D Convolutional Neural Network (CNN).
+*   **Entrada**: Fragmentos de ADN de 100 pares de bases (bp), codificados numéricamente.
+*   **Capas**: Conv1D (Extracción de características espaciales) -> MaxPooling -> Flatten -> Dense (Clasificación).
+*   **Optimizador**: Adam | **Loss**: Binary Crossentropy.
+
+### Entrenamiento y Datos
+*   **Fuente de Datos**: Los modelos se entrenaron con **datos sintéticos** generados a partir de genomas de referencia oficiales (NCBI):
+    *   *SARS-CoV-2*: S-gene (Spike protein).
+    *   *H3N2*: Hemagglutinin (HA) gene.
+*   **Estrategia de Entrenamiento**:
+    *   **Hard Negative Mining**: Para evitar falsos positivos, el modelo de COVID-19 conoce secuencias de H3N2 (y viceversa) etiquetadas explícitamente como "Negativas". Esto fuerza a la red a aprender diferencias estructurales finas y no solo distinguir "orden vs caos".
+    *   **Aceleración**: Entrenado localmente usando **NVIDIA RTX 4060** (cuDNN/CUDA) en <10 segundos por modelo.
+*   **Formato Final**: Modelos exportados a **TensorFlow Lite (Int8 Quantized)** para inferencia de ultra-baja latencia (<10ms) en CPUs modestas.
+
+## 🔮 Próximos Pasos (Roadmap v2.0)
+*   [ ] **Datos Reales**: Reemplazar generador sintético con pipeline de limpieza para archivos FASTQ crudos de Oxford Nanopore (MinION).
+*   [ ] **Base de Datos Viral**: Ampliar a Dengue, Zika y Ébola.
+*   [ ] **Visualización Genómica**: Gráfico de cobertura para mostrar qué parte exacta del virus fue detectada.
+*   [ ] **Hardware IoT**: Despliegue físico en Raspberry Pi 5 + Coral Edge TPU.
+
+## 🤝 Créditos
+Desarrollado por **Antonio Avezon**.
+*Versión 1.0.0 - 2025*
+*   **Privacidad Total**: Todo el procesamiento es offline; la data genética nunca sale del dispositivo.
+
+##  Despliegue en Otro Equipo (Soporte GPU)
+
+Este proyecto está configurado para aprovechar aceleración por hardware (NVIDIA GPU). Al mover el código a otro computador, ten en cuenta:
+
+### 1. Requisitos de Hardware
+*   **GPU NVIDIA**: Computability > 5.0 (ej. RTX 3060, 4060, A100).
+*   **Drivers**: Drivers de NVIDIA instalados en el sistema operativo host (Linux/Windows).
+
+### 2. Gestión de Modelos (.tflite)
+Los modelos de Inteligencia Artificial (`data/models/*.tflite`) son generados localmente.
+*   **Opción A (Recomendada - Re-entrenamiento)**: Ejecutar el script de entrenamiento en el nuevo equipo. Esto verifica que la GPU funciona correctamente y genera modelos optimizados para esa arquitectura.
+    ```bash
+    ./venv_gpu/bin/python src/model/train.py --target all
+    ```
+*   **Opción B (Copiar Archivos)**: Si solo deseas ejecutar la demo sin entrenar, puedes copiar manualmente la carpeta `data/models/` del equipo original. **Nota**: Git ignora estos archivos binarios por defecto para mantener el repositorio ligero.
+
+### 3. Instalación Limpia
+Nunca copies la carpeta `venv_gpu`. Crea un entorno limpio en el nuevo equipo:
+```bash
+# Crear entorno
+python3.12 -m venv venv_gpu
+
+# Instalar dependencias con soporte CUDA
+./venv_gpu/bin/pip install "tensorflow[and-cuda]"
+./venv_gpu/bin/pip install -r requirements.txt
+```
+
+## �📦 Estructura del Proyecto
 ```text
 EdgeGen-Dx/
 ├── data/               # Almacenamiento de secuencias genómicas
@@ -29,10 +87,11 @@ EdgeGen-Dx/
 
 ## 🛠️ Requisitos e Instalación
 
-### Prerrequisitos
-*   **Sistema Operativo**: Linux (probado en Fedora 43).
-*   **Hardware**: CPU estándar (Soporte opcional para GPU NVIDIA para entrenamiento).
-*   **Python**: 3.10+
+### Requisitos del Sistema
+*   **Sistema Operativo**: Linux (Recomendado Fedora/Ubuntu) o Windows (WSL2).
+*   **Python**: Versión **3.12** (Crítico para soporte TensorFlow GPU).
+*   **GPU (Opcional)**: NVIDIA RTX/GTX con drivers instalados (para entrenamiento acelerado).
+*   **Memoria RAM**: 8GB mínimo.
 
 ### Instalación
 1.  Clonar el repositorio:

@@ -1,0 +1,60 @@
+2025-12-14 19:19:07.698008: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-12-14 19:19:07.736631: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-12-14 19:19:08.566410: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/keras/src/layers/core/embedding.py:97: UserWarning: Argument `input_length` is deprecated. Just remove it.
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1765750749.418101   29650 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6166 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4060 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+[Train] Generando 2000 muestras sintéticas...
+[Train] Iniciando entrenamiento de la CNN...
+Epoch 1/5
+2025-12-14 19:19:10.544561: I external/local_xla/xla/service/service.cc:163] XLA service 0x7f7268017160 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2025-12-14 19:19:10.544595: I external/local_xla/xla/service/service.cc:171]   StreamExecutor device (0): NVIDIA GeForce RTX 4060 Laptop GPU, Compute Capability 8.9
+2025-12-14 19:19:10.563395: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2025-12-14 19:19:10.685930: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 91700
+I0000 00:00:1765750752.625140   29799 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m2:10[0m 3s/step - accuracy: 0.4688 - loss: 0.6939[1m22/50[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 2ms/step - accuracy: 0.6132 - loss: 0.6683 [1m41/50[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 3ms/step - accuracy: 0.6771 - loss: 0.6223[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m4s[0m 23ms/step - accuracy: 0.8269 - loss: 0.4431 - val_accuracy: 0.9950 - val_loss: 0.0454
+Epoch 2/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0898[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9787 - loss: 0.0808 - val_accuracy: 1.0000 - val_loss: 0.0154
+Epoch 3/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 18ms/step - accuracy: 0.9688 - loss: 0.0415[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9844 - loss: 0.0483 - val_accuracy: 1.0000 - val_loss: 7.9104e-04
+Epoch 4/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0264[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9894 - loss: 0.0342 - val_accuracy: 1.0000 - val_loss: 3.8365e-04
+Epoch 5/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0013[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9894 - loss: 0.0341 - val_accuracy: 1.0000 - val_loss: 3.1742e-04
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[Save] Modelo Keras guardado en: /home/antonio/projects/bioinformatics/src/model/../../data/models/edgegen_model.h5
+[TFLite] Convirtiendo a formato optimizado (Int8)...
+Saved artifact at '/tmp/tmpeh1umw9f'. The following endpoints are available:
+
+* Endpoint 'serve'
+  args_0 (POSITIONAL_ONLY): TensorSpec(shape=(None, 100), dtype=tf.float32, name='keras_tensor')
+Output Type:
+  TensorSpec(shape=(None, 2), dtype=tf.float32, name=None)
+Captures:
+  140136407973712: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403765200: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403764624: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403766352: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403763280: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403765392: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403765968: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403767120: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140136403765008: TensorSpec(shape=(), dtype=tf.resource, name=None)
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/tensorflow/lite/python/convert.py:863: UserWarning: Statistics for quantized inputs were expected, but not specified; continuing anyway.
+  warnings.warn(
+W0000 00:00:1765750754.492941   29650 tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+W0000 00:00:1765750754.492963   29650 tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+2025-12-14 19:19:14.493208: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: /tmp/tmpeh1umw9f
+2025-12-14 19:19:14.493687: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
+2025-12-14 19:19:14.493695: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: /tmp/tmpeh1umw9f
+I0000 00:00:1765750754.498136   29650 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+2025-12-14 19:19:14.498814: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
+2025-12-14 19:19:14.524290: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: /tmp/tmpeh1umw9f
+2025-12-14 19:19:14.531907: I tensorflow/cc/saved_model/loader.cc:471] SavedModel load for tags { serve }; Status: success: OK. Took 38700 microseconds.
+fully_quantize: 0, inference_type: 6, input_inference_type: INT8, output_inference_type: INT8
+2025-12-14 19:19:14.631548: W tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3705] Skipping runtime version metadata in the model. This will be generated by the exporter.
+[Save] Modelo TFLite cuantizado guardado en: /home/antonio/projects/bioinformatics/src/model/../../data/models/edgegen_quant.tflite
+[Info] Tamaño original: 177.70 KB
+[Info] Tamaño TFLite: 20.68 KB

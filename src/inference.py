@@ -72,8 +72,8 @@ class EdgeInference:
              # Let's rely on argmax mostly.
              pass
              
-        # Para la demo, "Virus" es clase 1
-        pathogen = "SARS-CoV-2 (Viral)" if predicted_class == 1 else "Humano/Negativo"
+        # Para la demo, "Virus Objetivo" es clase 1
+        pathogen = "Viral" if predicted_class == 1 else "Clean"
         
         latency_ms = (end_time - start_time) * 1000
         return pathogen, confidence, latency_ms

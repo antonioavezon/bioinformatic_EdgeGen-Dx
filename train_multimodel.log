@@ -1,0 +1,102 @@
+2025-12-14 19:25:38.114961: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-12-14 19:25:38.152444: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-12-14 19:25:38.934830: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/keras/src/layers/core/embedding.py:97: UserWarning: Argument `input_length` is deprecated. Just remove it.
+  warnings.warn(
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1765751139.782732   31410 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6166 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4060 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.9
+[Train] Generando 2000 muestras para SARS-CoV-2...
+[Train] Iniciando entrenamiento de la CNN...
+Epoch 1/5
+2025-12-14 19:25:40.894309: I external/local_xla/xla/service/service.cc:163] XLA service 0x7ff174009c00 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2025-12-14 19:25:40.894350: I external/local_xla/xla/service/service.cc:171]   StreamExecutor device (0): NVIDIA GeForce RTX 4060 Laptop GPU, Compute Capability 8.9
+2025-12-14 19:25:40.913021: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+2025-12-14 19:25:41.026576: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:473] Loaded cuDNN version 91700
+I0000 00:00:1765751142.543035   31565 device_compiler.h:196] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m1:49[0m 2s/step - accuracy: 0.5312 - loss: 0.6962[1m37/50[0m [32m━━━━━━━━━━━━━━[0m[37m━━━━━━[0m [1m0s[0m 1ms/step - accuracy: 0.6517 - loss: 0.6451 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m3s[0m 22ms/step - accuracy: 0.7906 - loss: 0.4796 - val_accuracy: 0.9875 - val_loss: 0.0877
+Epoch 2/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 0.9062 - loss: 0.2277[1m47/50[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 1ms/step - accuracy: 0.9703 - loss: 0.1203 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9806 - loss: 0.0841 - val_accuracy: 0.9975 - val_loss: 0.0103
+Epoch 3/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m1s[0m 27ms/step - accuracy: 1.0000 - loss: 0.0519[1m25/50[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 2ms/step - accuracy: 0.9929 - loss: 0.0394 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9931 - loss: 0.0366 - val_accuracy: 1.0000 - val_loss: 6.4693e-04
+Epoch 4/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 19ms/step - accuracy: 1.0000 - loss: 0.0333[1m31/50[0m [32m━━━━━━━━━━━━[0m[37m━━━━━━━━[0m [1m0s[0m 2ms/step - accuracy: 1.0000 - loss: 0.0233 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9987 - loss: 0.0252 - val_accuracy: 1.0000 - val_loss: 2.2968e-04
+Epoch 5/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0655[1m46/50[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 1ms/step - accuracy: 0.9963 - loss: 0.0298 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9969 - loss: 0.0214 - val_accuracy: 1.0000 - val_loss: 9.0638e-05
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[TFLite] Convirtiendo modelo covid19...
+Saved artifact at '/tmp/tmpsw4f2mnt'. The following endpoints are available:
+
+* Endpoint 'serve'
+  args_0 (POSITIONAL_ONLY): TensorSpec(shape=(None, 100), dtype=tf.float32, name='keras_tensor')
+Output Type:
+  TensorSpec(shape=(None, 2), dtype=tf.float32, name=None)
+Captures:
+  140682015948624: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009298896: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009298320: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009300048: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009296976: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009299088: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009299664: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009300816: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009298704: TensorSpec(shape=(), dtype=tf.resource, name=None)
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/tensorflow/lite/python/convert.py:863: UserWarning: Statistics for quantized inputs were expected, but not specified; continuing anyway.
+  warnings.warn(
+W0000 00:00:1765751144.487483   31410 tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+W0000 00:00:1765751144.487498   31410 tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+2025-12-14 19:25:44.487719: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: /tmp/tmpsw4f2mnt
+2025-12-14 19:25:44.488139: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
+2025-12-14 19:25:44.488145: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: /tmp/tmpsw4f2mnt
+I0000 00:00:1765751144.492419   31410 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+2025-12-14 19:25:44.493036: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
+2025-12-14 19:25:44.517609: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: /tmp/tmpsw4f2mnt
+2025-12-14 19:25:44.524624: I tensorflow/cc/saved_model/loader.cc:471] SavedModel load for tags { serve }; Status: success: OK. Took 36905 microseconds.
+fully_quantize: 0, inference_type: 6, input_inference_type: INT8, output_inference_type: INT8
+2025-12-14 19:25:44.608877: W tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3705] Skipping runtime version metadata in the model. This will be generated by the exporter.
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/keras/src/layers/core/embedding.py:97: UserWarning: Argument `input_length` is deprecated. Just remove it.
+  warnings.warn(
+[Success] Modelo model_covid.tflite guardado.
+[Train] Generando 2000 muestras para Influenza A (H3N2)...
+[Train] Iniciando entrenamiento de la CNN...
+Epoch 1/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m1:20[0m 2s/step - accuracy: 0.4375 - loss: 0.6969[1m48/50[0m [32m━━━━━━━━━━━━━━━━━━━[0m[37m━[0m [1m0s[0m 1ms/step - accuracy: 0.6483 - loss: 0.6449 [1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m2s[0m 17ms/step - accuracy: 0.7656 - loss: 0.5265 - val_accuracy: 1.0000 - val_loss: 0.1456
+Epoch 2/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 0.7812 - loss: 0.3033[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9619 - loss: 0.1276 - val_accuracy: 1.0000 - val_loss: 0.0070
+Epoch 3/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0593[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9944 - loss: 0.0666 - val_accuracy: 1.0000 - val_loss: 0.0017
+Epoch 4/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 18ms/step - accuracy: 1.0000 - loss: 0.0428[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9975 - loss: 0.0463 - val_accuracy: 1.0000 - val_loss: 3.8448e-04
+Epoch 5/5
+[1m 1/50[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 17ms/step - accuracy: 1.0000 - loss: 0.0400[1m50/50[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step - accuracy: 0.9975 - loss: 0.0454 - val_accuracy: 1.0000 - val_loss: 1.0312e-04
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[TFLite] Convirtiendo modelo h3n2...
+Saved artifact at '/tmp/tmpwv_2d8ly'. The following endpoints are available:
+
+* Endpoint 'serve'
+  args_0 (POSITIONAL_ONLY): TensorSpec(shape=(None, 100), dtype=tf.float32, name='keras_tensor_10')
+Output Type:
+  TensorSpec(shape=(None, 2), dtype=tf.float32, name=None)
+Captures:
+  140682009307728: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009306384: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009306768: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009308496: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009302544: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009305232: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009309264: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009310608: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  140682009307536: TensorSpec(shape=(), dtype=tf.resource, name=None)
+/home/antonio/projects/bioinformatics/venv_gpu/lib64/python3.12/site-packages/tensorflow/lite/python/convert.py:863: UserWarning: Statistics for quantized inputs were expected, but not specified; continuing anyway.
+  warnings.warn(
+W0000 00:00:1765751147.837861   31410 tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+W0000 00:00:1765751147.837881   31410 tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+2025-12-14 19:25:47.837993: I tensorflow/cc/saved_model/reader.cc:83] Reading SavedModel from: /tmp/tmpwv_2d8ly
+2025-12-14 19:25:47.838384: I tensorflow/cc/saved_model/reader.cc:52] Reading meta graph with tags { serve }
+2025-12-14 19:25:47.838392: I tensorflow/cc/saved_model/reader.cc:147] Reading SavedModel debug info (if present) from: /tmp/tmpwv_2d8ly
+2025-12-14 19:25:47.841919: I tensorflow/cc/saved_model/loader.cc:236] Restoring SavedModel bundle.
+2025-12-14 19:25:47.863831: I tensorflow/cc/saved_model/loader.cc:220] Running initialization op on SavedModel bundle at path: /tmp/tmpwv_2d8ly
+2025-12-14 19:25:47.870676: I tensorflow/cc/saved_model/loader.cc:471] SavedModel load for tags { serve }; Status: success: OK. Took 32685 microseconds.
+fully_quantize: 0, inference_type: 6, input_inference_type: INT8, output_inference_type: INT8
+2025-12-14 19:25:47.972549: W tensorflow/compiler/mlir/lite/flatbuffer_export.cc:3705] Skipping runtime version metadata in the model. This will be generated by the exporter.
+[Success] Modelo model_h3n2.tflite guardado.
