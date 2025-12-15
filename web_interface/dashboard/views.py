@@ -110,7 +110,7 @@ def run_analysis(request):
             
             # Determine display name
             viral_label = "SARS-CoV-2" if target_virus == 'covid19' else "Influenza H3N2"
-            _analyze_read(eng, header, seq, results_list, viral_label)
+            _analyze_read(eng, header, seq, results, viral_label)
             if results[-1]['is_viral']: virus_count += 1
         
         # Diagnosis

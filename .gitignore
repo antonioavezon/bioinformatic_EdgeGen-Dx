@@ -19,3 +19,18 @@ build/
 # IDE
 .vscode/
 .idea/
+
+# Data & Models
+data/raw/
+data/references/
+data/models/*.h5
+!data/models/*.tflite
+
+# Logs & Temporary Files
+*.log
+*.txt
+!requirements.txt
+!test_samples.txt
+
+# OS Generated
+.DS_Store

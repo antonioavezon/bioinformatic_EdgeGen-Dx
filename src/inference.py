@@ -32,8 +32,14 @@ class EdgeInference:
         """
         # 1. Preproceso
         input_data = self.encoder.encode(sequence)
-        # Reshape to expected input (1, 100) and type int8
-        input_tensor = np.expand_dims(input_data, axis=0).astype(np.int8)
+        
+        # Check model input type (INT8 vs FLOAT32)
+        input_dtype = self.input_details[0]['dtype']
+        
+        if input_dtype == np.float32:
+            input_tensor = np.expand_dims(input_data, axis=0).astype(np.float32)
+        else:
+            input_tensor = np.expand_dims(input_data, axis=0).astype(np.int8)
 
         # 2. Set tensor
         self.interpreter.set_tensor(self.input_details[0]['index'], input_tensor)
@@ -44,26 +50,24 @@ class EdgeInference:
         end_time = time.time()
         
         # 4. Leer salida
-        # Output es int8 (quantized), normalmente necesitamos dequantizar si nos importan las probs exactas
-        # Pero para clasificación argmax basta comparar los valores relativos.
-        # Escala: output = (quantized_output - zero_point) * scale
         output_data = self.interpreter.get_tensor(self.output_details[0]['index'])
         
-        # Dequantization manual simple para obtener "confianza" aproximada (0-1)
+        # Dequantization si es necesario
         scale, zero_point = self.output_details[0]['quantization']
-        # Si el modelo no usa quant en salida (float), scale=0.0
+        
         if scale > 0:
+            # Quantized model (int8 output)
             output_probs = (output_data.astype(np.float32) - zero_point) * scale
         else:
-            # Si output es float directamente (raro si pedimos full int8)
-            output_probs = output_data[0]
+            # Float model directly
+            output_probs = output_data[0] # output_data shape (1, 2)
             
-        # Softmax simple si la salida no está normalizada
-        # (Aunque el modelo termina en softmax, la cuantización puede alterar)
-        # Asumiremos output_probs son logits o probs aproximadas.
-        
         predicted_class = np.argmax(output_probs)
-        confidence = output_probs[0][predicted_class] # Simple score
+        # Handle shape differences for confidence
+        if output_probs.ndim == 1: 
+             confidence = output_probs[predicted_class]
+        else:
+             confidence = output_probs[0][predicted_class]
         
         # Normalizar confianza a 0-100% (esto es un estimado para la demo)
         # En int8 signed, va de -128 a 127.

@@ -28,7 +28,7 @@ class TestInferenceEngine(unittest.TestCase):
         mock_interpreter_cls.return_value = mock_interpreter
         
         # Configurar mocks de input/output details
-        mock_interpreter.get_input_details.return_value = [{'index': 0}]
+        mock_interpreter.get_input_details.return_value = [{'index': 0, 'dtype': np.float32}]
         # Mock output: scale=1.0, zero_point=0 for simplicity
         mock_interpreter.get_output_details.return_value = [{'index': 1, 'quantization': (1.0, 0)}]
         
